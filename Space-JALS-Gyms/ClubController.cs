@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Enumeration;
 using System.Text;
 
 namespace Space_JALS_Gyms
@@ -24,12 +26,39 @@ namespace Space_JALS_Gyms
         public void CreateBill()
         { 
         }
-        public void WriteToFile()//string fileName
-        { 
+        public void WriteToFile()//List<string> Memberinfo list of data that will be written to the file
+        {
+            List<string> MemberInfo = new List<string>();
+
+            string fileName = "../../../Memberinfo.txt";
+            StreamWriter writer = new StreamWriter(fileName);
+
+            foreach (string info in MemberInfo)
+            {
+                writer.WriteLine($"{info.ID}|{info.fName}|{info.lName}");
+            }
+
+            writer.Close();
+
 
         }
         public void ReadFromFile() //string fileName
-        { 
+        {
+            //may need logic in the future that dictates which file to read from (memberinfo or Clubinfo)
+            //string fileName = "../../../ClubInfo.txt"; can uncomment for future use if needed
+            string fileName = "../../../Memberinfo.txt";
+
+            StreamReader reader = new StreamReader(fileName);
+            List<string> readInfo = new List<string>();
+
+            //currently set to read the entire file, once logic for info has been put in place, we will set up the reader to read specific lines.
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                string[] info = line.Split('|');
+            }
+
+            reader.Close();
         
         }
     }
