@@ -6,22 +6,32 @@ namespace Space_JALS_Gyms
 {
     class ClubController
     {
+        //all methods are set inititally set to void to avoid errors while writing code. That will change as logic is added.
+
+        public void WelcomeToGym()
+        { 
+        
+        }
+        public void AddMember()
+        { 
+        }
+        public void RemoveMember()
+        { 
+        }
+        public void CheckMembership()
+        { 
+        }
+        public void CreateBill()
+        { 
+        }
+        public void WriteToFile()//string fileName
+        { 
+
+        }
+        public void ReadFromFile() //string fileName
+        { 
+        
+        }
     }
-//    WelcomeToGym
-//AddMember()
-//Name
-//Address
-//ClubID
-//RemoveMember()
-//ClubID(use as index for removing member)
-//CheckMembership()
-//Check if a specific member has access to this club.
-//CreateBill()
-//If PaidBill(in member class) is false, create a bill for that specific member
-//Need member info
-//WriteToFile
-//Writes new member information to member file
-//ReadFromFile
-//Reads member information from member file
 
 }
