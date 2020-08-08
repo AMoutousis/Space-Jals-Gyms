@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Space_JALS_Gyms
 {
-
     abstract class Member
     {
         #region Properties
