@@ -35,7 +35,7 @@ namespace Space_JALS_Gyms
         #endregion
 
         #region Methods
-        public abstract void CheckIn(Club club);
+        public abstract void CheckIn(Club club, int MemberID);
         public virtual void PrintInfo()
         {
             Console.WriteLine($"Member ID: {MemberID} \nFirst Name: {FirstName} \nLast Name: {LastName}");

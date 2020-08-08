@@ -6,8 +6,12 @@ namespace Space_JALS_Gyms
     {
         static void Main(string[] args)
         {
-            Club myClub = new Club(500, "club Name","12345 planet drive");
-            myClub.ClubInfo();
+            ClubController cc = new ClubController();
+            //Club myClub = new Club(500, "club Name","12345 planet drive");
+            //myClub.ClubInfo();
+
+            cc.WelcomeToGym();
+
         }
     }
 }
