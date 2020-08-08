@@ -30,8 +30,23 @@ namespace Space_JALS_Gyms
         public void CheckMembership()
         { 
         }
-        public void CreateBill()
-        { 
+        public void CreateBill(bool PaidBill)
+        {
+            if (PaidBill == true)
+            {
+                Console.WriteLine("Your balance is paid. Carrey on with Space Gains.");
+            }
+            else
+            {
+                if (Member.MemberID >= 100 && Member.MemberID <= 600)
+                {
+                    Console.WriteLine("You owe 10 Star Specks.");
+                }
+                if (Member.MemberID >= 5000)
+                {
+                    Console.WriteLine("You owe 25 Star Specks. *gurmble* rich chicken *grumble*");
+                }
+            }
         }
         public void WriteToFile()//List<string> Memberinfo list of data that will be written to the file
         {

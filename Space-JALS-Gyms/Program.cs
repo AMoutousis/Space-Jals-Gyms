@@ -6,7 +6,8 @@ namespace Space_JALS_Gyms
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Club myClub = new Club(500, "club Name","12345 planet drive");
+            myClub.ClubInfo();
         }
     }
 }
