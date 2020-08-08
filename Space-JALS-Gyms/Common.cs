@@ -17,5 +17,16 @@ namespace Space_JALS_Gyms
             return Console.ReadLine();
         }
         #endregion
+        
+        public static string YesNoChecker(string input)
+        {
+            string input1 = Console.ReadLine().ToLower();
+            while (input1 != "y" && input1 != "n")
+            {
+                Console.Write("Invalid input. Please enter either \"y\" or \"n\": ");
+                input1 = Console.ReadLine();
+            }
+            return input1;
+        }
     }
 }
