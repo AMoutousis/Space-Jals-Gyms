@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Space_JALS_Gyms
@@ -12,9 +13,66 @@ namespace Space_JALS_Gyms
 //Print member info
 //fName
 //lName
-//Address
 
-    class MultiMember
+    class MultiMember : Member
     {
+        #region Properties
+        public int ClubID { get; set; }
+        public int MemberPoints { get; set; }
+        #endregion
+
+        #region Constructors
+        public MultiMember() { }
+        public MultiMember(int memberID, string fName, string lName, int memberFees, bool paidBill, int clubID, int memberPoints) : base (memberID, fName, lName, memberFees, paidBill)
+        {
+            ClubID = clubID;
+            MemberPoints = memberPoints;
+        }
+        #endregion
+
+        #region Methods
+        public override void CheckIn(Club club)
+        {
+            if (club.ClubID == ClubID)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Access Granted!");
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.WriteLine($"Welcome to Space JALS: Sector - {club.Name}!");
+            }
+            else
+            {
+                Console.WriteLine("Sorry, you are not a member of this Sector. Be gone!");
+            }
+
+        }
+        public override void PrintInfo()
+        {
+            Console.WriteLine($"Member ID: {MemberID}");
+            Console.WriteLine($"Name: {FirstName} {LastName}");
+            if (PaidBill == false)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"Balance: {MemberFees} Star Specks");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("No current balance.");
+                Console.ResetColor();
+            }
+            Console.WriteLine();
+            CheckPoints();
+        }
+
+
+        public void CheckPoints()
+        {
+            MemberPoints++;
+            Console.WriteLine($"Current JALS Gorgals: {MemberPoints}");
+        }
+        #endregion
     }
 }
