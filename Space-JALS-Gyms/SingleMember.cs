@@ -26,7 +26,7 @@ namespace Space_JALS_Gyms
             //club.ID
             if (MemberID >= 1 && MemberID < 100)
             {
-                Console.WriteLine(club.Name);
+                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
             }
             else if (MemberID >= 100 && MemberID < 200)
             {

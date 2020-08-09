@@ -70,10 +70,45 @@ namespace Space_JALS_Gyms
         {
             string strFName = Common.GetUserInput("Please enter First Name");
             string strLName = Common.GetUserInput("Please enter Last Name");
-            int ID = 100;
-            //need to add logic for the ID
 
-            WriteToFile(ID, strFName, strLName);
+            int count = 1;
+            foreach (Club clubSector in ClubLocations)
+            {
+                Console.WriteLine($"{count}. {clubSector.Name}");
+                count++;
+            }
+            string sectorSelection = Common.GetUserInput("Please select the sector you would like to join!");
+
+            int ID;
+
+            if (int.Parse(sectorSelection) == 1)
+            {
+                ID = 10;
+
+            }
+            if (int.Parse(sectorSelection) == 2)
+            {
+                ID = 110;
+            }
+            if (int.Parse(sectorSelection) == 3)
+            {
+                ID = 210;
+            }
+            if (int.Parse(sectorSelection) == 4)
+            {
+                ID = 310;
+            }
+            if (int.Parse(sectorSelection) == 5)
+            {
+                ID = 410;
+            }
+            if (int.Parse(sectorSelection) == 6)
+            {
+                ID = 510;
+            }
+
+
+            WriteToFile(504, strFName, strLName);
         }
         public void RemoveMember()
         { 
@@ -81,6 +116,7 @@ namespace Space_JALS_Gyms
         public void CheckMembership(SingleMember sMember, MultiMember mMember, Club club, int memberID)
         { 
             string memberStatus = Common.CheckMemberStatus(memberID);
+
             if (memberStatus == "Single")
             {
                 sMember.CheckIn(club, memberID);
@@ -144,12 +180,11 @@ namespace Space_JALS_Gyms
             reader.Close();
         
         }
-        public static void WriteClubInfoToList()
+        public void WriteClubInfoToList()
         {
             List<Club> cl = new List<Club>() { };
-            string[] clubInfo = new string[3];
 
-            string fileName = "../../../Memberinfo.txt";
+            string fileName = "../../../ClubInfo.txt";
 
             StreamReader reader = new StreamReader(fileName, true);
 
@@ -157,9 +192,10 @@ namespace Space_JALS_Gyms
 
             while (line != null)
             {
-                clubInfo = line.Split('|');
+                string[] clubInfo = line.Split('|');
                 Club newClub = new Club(int.Parse(clubInfo[0]), clubInfo[1], clubInfo[2]);
                 cl.Add(newClub);
+                line = reader.ReadLine();
             }
 
             reader.Close();
@@ -167,7 +203,7 @@ namespace Space_JALS_Gyms
             ClubLocations = cl;
 
         }
-        
+
     }
 
 }
