@@ -113,7 +113,7 @@ namespace Space_JALS_Gyms
             List<string> MemberInfo = new List<string>();
 
             string fileName = "../../../Memberinfo.txt";
-            StreamWriter writer = new StreamWriter(fileName);
+            StreamWriter writer = new StreamWriter(fileName, true); //need to pass (x,true) in order to write to the end of file and not overwrite text file data
 
             writer.WriteLine($"{ID}|{fName}|{lName}");
 
@@ -132,10 +132,7 @@ namespace Space_JALS_Gyms
 
             //currently set to read the entire file, once logic for info has been put in place, we will set up the reader to read specific lines.
             string line = reader.ReadLine();
-            while (line != null)
-            {
-                string[] info = line.Split('|');
-            }
+            string[] info = System.IO.File.ReadAllLines(fileName); //reads all lines of specific text file
 
             reader.Close();
         
@@ -147,7 +144,7 @@ namespace Space_JALS_Gyms
 
             string fileName = "../../../Memberinfo.txt";
 
-            StreamReader reader = new StreamReader(fileName);
+            StreamReader reader = new StreamReader(fileName, true);
 
             string line = reader.ReadLine();
 
