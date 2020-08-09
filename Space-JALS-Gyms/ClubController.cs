@@ -63,8 +63,6 @@ namespace Space_JALS_Gyms
                 //need to create a method in Common that quits the program
             }
 
-
-
         }
         public void AddMember()
         {
@@ -129,7 +127,7 @@ namespace Space_JALS_Gyms
             }
             else if (memberStatus == "Multi")
             {
-                //mMember.CheckIn(club, memberID);
+                mMember.CheckIn(ClubLocations[Program.clubLocationIndex], memberID);
             }
         }
         public void CreateBill(bool PaidBill, Member member)
@@ -219,22 +217,11 @@ namespace Space_JALS_Gyms
                 clubID.Add(clubSector.ClubID);
                 count++;
             }
-            /*
-             * (0) 1. 100 Space JALS Gyms - Earth Earth
-             * (1) 2. 200 Space JALS Gyms - Mars Mars
-             * (2) 3. 300 Space JALS Gyms - Krypton Krypton
-             * (3) 4. 400 Space JALS Gyms - Pluto Pluto
-             * (4) 5. 500 Space JALS Gyms - Tatooine Tatooine
-             * (5) 6. 600 Space JALS Gyms - What Lauren said Lauren stuff
-             * 
-             */
 
             string sectorSelection = Common.GetUserInput("Please select the club you're currently working at.");
-            //"1"
-            int ID = Common.CheckNumber(sectorSelection, true, 6);
-            //1
 
-            //1. 100 Space JALS Gyms - Earth Earth
+            int ID = Common.CheckNumber(sectorSelection, true, 6);
+
             int currentClubID = 0;
             clubIndex = 0;
 

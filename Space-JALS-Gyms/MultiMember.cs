@@ -33,14 +33,12 @@ namespace Space_JALS_Gyms
         #region Methods
         public override void CheckIn(Club club, int memberID)
         {
-            if (club.ClubID == ClubID)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Access Granted!");
-                Console.ResetColor();
-                Console.WriteLine();
-                Console.WriteLine($"Welcome to Space JALS: Sector - {club.Name}!");
-            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Access Granted!");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine($"Welcome to Space JALS: Sector - {club.Name}!");
 
         }
         public override void PrintInfo()
