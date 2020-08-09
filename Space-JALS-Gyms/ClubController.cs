@@ -132,7 +132,14 @@ namespace Space_JALS_Gyms
 
             //currently set to read the entire file, once logic for info has been put in place, we will set up the reader to read specific lines.
             string line = reader.ReadLine();
-            string[] info = System.IO.File.ReadAllLines(fileName); //reads all lines of specific text file
+
+            string[] memberInfo;
+
+            while (line != null)
+            {
+                memberInfo = line.Split('|');
+                line = reader.ReadLine();
+            }
 
             reader.Close();
         

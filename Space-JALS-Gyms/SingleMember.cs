@@ -32,22 +32,22 @@ namespace Space_JALS_Gyms
             {
                 Console.WriteLine(club.Name);
             }
-            else if (MemberID >= 200 && MemberID < 300)
-            {
-                Console.WriteLine(club.Krypton);
-            }
-            else if (MemberID >= 300 && MemberID < 400)
-            {
-                Console.WriteLine(club.Mars);
-            }
-            else if (MemberID >= 400 && MemberID < 500)
-            {
-                Console.WriteLine(club.Tatooine);
-            }
-            else 
-            {
-                Console.WriteLine(club.Gallifrey);
-            }
+            //else if (MemberID >= 200 && MemberID < 300)
+            //{
+            //    Console.WriteLine(club.Krypton);
+            //}
+            //else if (MemberID >= 300 && MemberID < 400)
+            //{
+            //    Console.WriteLine(club.Mars);
+            //}
+            //else if (MemberID >= 400 && MemberID < 500)
+            //{
+            //    Console.WriteLine(club.Tatooine);
+            //}
+            //else 
+            //{
+            //    Console.WriteLine(club.Gallifrey);
+            //}
         }
     }
 }
