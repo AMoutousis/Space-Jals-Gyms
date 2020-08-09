@@ -31,7 +31,7 @@ namespace Space_JALS_Gyms
         #endregion
 
         #region Methods
-        public override void CheckIn(Club club)
+        public override void CheckIn(Club club, int memberID)
         {
             if (club.ClubID == ClubID)
             {
@@ -40,10 +40,6 @@ namespace Space_JALS_Gyms
                 Console.ResetColor();
                 Console.WriteLine();
                 Console.WriteLine($"Welcome to Space JALS: Sector - {club.Name}!");
-            }
-            else
-            {
-                Console.WriteLine("Sorry, you are not a member of this Sector. Be gone!");
             }
 
         }
