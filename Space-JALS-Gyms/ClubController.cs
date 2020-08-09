@@ -37,7 +37,7 @@ namespace Space_JALS_Gyms
                 string tempMemberID = Common.GetUserInput("Please enter your Member ID");
                 int memberID = Common.CheckNumber(tempMemberID, false, 0);
 
-                CheckMembership(sMember, mMember, club, memberID);
+                CheckMembership(sMember, mMember, memberID);
 
             }
             else if (option == 2)
@@ -78,8 +78,7 @@ namespace Space_JALS_Gyms
                 count++;
             }
             string sectorSelection = Common.GetUserInput("Please select the sector you would like to join!");
-
-            int ID;
+            int ID = Common.CheckNumber(sectorSelection, false, 0);
 
             if (int.Parse(sectorSelection) == 1)
             {
@@ -113,17 +112,24 @@ namespace Space_JALS_Gyms
         public void RemoveMember()
         { 
         }
-        public void CheckMembership(SingleMember sMember, MultiMember mMember, Club club, int memberID)
+        public void CheckMembership(SingleMember sMember, MultiMember mMember, int memberID)
         { 
             string memberStatus = Common.CheckMemberStatus(memberID);
 
             if (memberStatus == "Single")
             {
-                sMember.CheckIn(club, memberID);
+                if (ClubLocations[Program.clubLocationIndex].ClubID == Program.CurrentClub)
+                {
+                    sMember.CheckIn(ClubLocations[Program.clubLocationIndex], memberID);
+                }
+                else
+                {
+                    Console.WriteLine("get out");
+                }
             }
             else if (memberStatus == "Multi")
             {
-                mMember.CheckIn(club, memberID);
+                //mMember.CheckIn(club, memberID);
             }
         }
         public void CreateBill(bool PaidBill, Member member)
@@ -202,6 +208,48 @@ namespace Space_JALS_Gyms
 
             ClubLocations = cl;
 
+        }
+        public int InitializeClubLocation(out int clubIndex)
+        {
+            List<int> clubID = new List<int>() { };
+            int count = 1;
+            foreach (Club clubSector in ClubLocations)
+            {
+                Console.WriteLine($"{count}. {clubSector.Name}");
+                clubID.Add(clubSector.ClubID);
+                count++;
+            }
+            /*
+             * (0) 1. 100 Space JALS Gyms - Earth Earth
+             * (1) 2. 200 Space JALS Gyms - Mars Mars
+             * (2) 3. 300 Space JALS Gyms - Krypton Krypton
+             * (3) 4. 400 Space JALS Gyms - Pluto Pluto
+             * (4) 5. 500 Space JALS Gyms - Tatooine Tatooine
+             * (5) 6. 600 Space JALS Gyms - What Lauren said Lauren stuff
+             * 
+             */
+
+            string sectorSelection = Common.GetUserInput("Please select the club you're currently working at.");
+            //"1"
+            int ID = Common.CheckNumber(sectorSelection, true, 6);
+            //1
+
+            //1. 100 Space JALS Gyms - Earth Earth
+            int currentClubID = 0;
+            clubIndex = 0;
+
+            for (int i = 0; i < clubID.Count; i++)
+            {
+
+                if (ID-1 == i)
+                {
+                    currentClubID = clubID[i];
+                    clubIndex = i;
+                    break;
+                }
+            }
+
+            return currentClubID;
         }
 
     }
