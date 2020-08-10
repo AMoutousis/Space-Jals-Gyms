@@ -1,6 +1,15 @@
-﻿101|Andoni|Moutousis|10|true|0
-201|Josh|Jabour|10|true|0
-301|Lauren|Fryman|10|true|0
-401|Sumana|Manoj|10|true|0
-5001|Anna|Baseley|25|true|15
-5002|Tommy|Waalkes|25|true|10
+101|Andoni|Moutousis|10|True|0
+201|Josh|Jabour|10|False|0
+301|Lauren|Fryman|10|True|0
+401|Sumana|Manoj|10|True|0
+5001|Anna|Baseley|25|True|21
+5002|Tommy|Waalkes|25|False|10
+302|Jimmy|Eat World|10|True|0
+5003|Pete|Pepper|25|True|0
+99|Jennifer|Too high|10|True|0
+199|Chuck|Palahniuk|10|True|0
+102|Riley|Sager|10|True|0
+1|James|Howlett|10|True|0
+2|John|Peter|10|True|0
+3|Stuart|Little|10|True|0
+4|Bethany|Lazlo|10|True|0

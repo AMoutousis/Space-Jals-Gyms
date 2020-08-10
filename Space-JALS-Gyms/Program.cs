@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Space_JALS_Gyms
 {
@@ -13,7 +14,11 @@ namespace Space_JALS_Gyms
             cc.ReadFromFile();
             cc.WriteClubInfoToList();
             CurrentClub = cc.InitializeClubLocation(out clubLocationIndex);
-            cc.WelcomeToGym();
+            while (cc.lContinue)
+            {
+                cc.WelcomeToGym();
+            }
+            cc.WriteToFile();
 
         }
     }

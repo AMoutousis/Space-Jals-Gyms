@@ -17,7 +17,6 @@ namespace Space_JALS_Gyms
         public SingleMember(int ID, string firstName, string lastName, int fees, bool paidBill) : base(ID, firstName, lastName, fees, paidBill)
         {
         }
-        //Methods
         public override void PrintInfo()
         {
             Console.WriteLine($"ID: {MemberID}");
@@ -26,7 +25,6 @@ namespace Space_JALS_Gyms
         }
         public override void CheckIn(Club club, int MemberID)
         {
-            //club.ID
             if (club.ClubID == 100 && MemberID >= 1 && MemberID < 100)
             {
                 Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
@@ -53,7 +51,7 @@ namespace Space_JALS_Gyms
             }
             else
             {
-                Console.WriteLine("Go home");
+                Console.WriteLine("This doesn't appear to be your club. Please try again.");
             }
         }
     }

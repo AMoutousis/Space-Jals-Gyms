@@ -6,20 +6,9 @@ using System.Text;
 
 namespace Space_JALS_Gyms
 {
-//    Override Checkin(Club club)
-//Check if member is allowed to check in to specific club.Spoiler they will.
-//Void PointCheck()
-//Check how many points the member has.Add points on check in.
-//Override PrintInfo()
-//Print member info
-//fName
-//lName
 
     class MultiMember : Member
     {
-        #region Properties
-        //public int MemberPoints { get; set; }
-        #endregion
 
         #region Constructors
         public MultiMember() { }
@@ -38,7 +27,7 @@ namespace Space_JALS_Gyms
             Console.WriteLine();
             Console.WriteLine($"Welcome to Space JALS: Sector - {club.Name}!");
             IncreaseMemberPoints(memberID);
-            Console.WriteLine(MemberPoints);
+            Console.WriteLine($"Your curret points are: {MemberPoints}");
 
         }
         public override void PrintInfo()
@@ -58,21 +47,26 @@ namespace Space_JALS_Gyms
                 Console.ResetColor();
             }
             Console.WriteLine();
-            //CheckPoints();
         }
 
 
         public void IncreaseMemberPoints(int memberID)
         {
             int points = 0;
-            Console.WriteLine($"Current JALS Gorgals: {MemberPoints}");
 
             points = CheckPoints(memberID);
             points++;
 
             MemberPoints = points;
 
-            Console.WriteLine($"Current JALS Gorgals: {MemberPoints}");
+            foreach (Member member in ClubController.MemberInfo)
+            {
+                if (member.MemberID == memberID)
+                {
+                    member.MemberPoints = points ;
+                    break;
+                }
+            }
 
         }
         public int CheckPoints(int memberID)
@@ -87,8 +81,7 @@ namespace Space_JALS_Gyms
                     break;
                 }
             }
-
-            Console.WriteLine($"Current JALS Gorgals: {points}");
+           
 
             return points;
         }
