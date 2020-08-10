@@ -4,13 +4,11 @@ using System.Text;
 
 namespace Space_JALS_Gyms
 {
-    // This class will contain all the common methods that can be used by any class anytime as required
-    // For the sake of clarity, they can be grouped as Console Methods, Calcuation Method etc as required
+
     public static class Common
     {
         #region Console Methods
-        // This method will display the message parameter to the console.
-        // It will then return the user input to the calling method
+
         public static string GetUserInput(string message)
         {
             Console.WriteLine(message);
@@ -18,7 +16,7 @@ namespace Space_JALS_Gyms
         }
         #endregion
         
-        public static string YesNoChecker(string input)
+        public static string YesNoChecker()
         {
             string input1 = Console.ReadLine().ToLower();
             while (input1 != "y" && input1 != "n")
@@ -71,9 +69,10 @@ namespace Space_JALS_Gyms
             }
             return validNumber;
         }
-        public static string CheckMemberStatus(int ID)
+        public static string CheckMemberStatus(int ID, out bool validID)
         {
             string status = "";
+            validID = true;
 
             if (ID > 0 && ID < 600)
             {
@@ -85,9 +84,10 @@ namespace Space_JALS_Gyms
             }
             else
             {
-                Console.WriteLine("You are not a member, brah");
-                Console.WriteLine("Join or get space gainzz somewhere else!");
-                Console.WriteLine("or else...");
+                Console.WriteLine("It doesn't appear that you are a member.");
+                Console.WriteLine("We are accepting new members, please join us!");
+                Console.WriteLine("Or else...");
+                validID = false;
             }
 
             return status;

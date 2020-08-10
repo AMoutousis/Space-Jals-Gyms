@@ -4,3 +4,4 @@
 400|Space Jals Gyms - Mars|Mars
 500|Space Jals Gyms - Tatooine|Tatooine
 600|Space Jals Gyms - Gallifrey|Gallifrey
+700|Space Jals Gyms - Ilum|Ilum

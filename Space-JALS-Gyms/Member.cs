@@ -12,6 +12,7 @@ namespace Space_JALS_Gyms
         public string LastName { get; set; }
         public int MemberFees { get; set; }
         public bool PaidBill { get; set; }
+        public int MemberPoints { get; set; }
         #endregion
 
         #region Constructors
@@ -23,13 +24,21 @@ namespace Space_JALS_Gyms
             FirstName = firstName;
             LastName = lastName;
         }
-
         public Member(int ID, string firstName, string lastName, int memberFees, bool paidBill)
         {
             MemberID = ID;
             FirstName = firstName;
             LastName = lastName;
-            MemberFees = MemberFees;
+            MemberFees = memberFees;
+            PaidBill = paidBill;
+        }
+        public Member(int ID, string firstName, string lastName, int memberFees, bool paidBill,  int memberPoints)
+        {
+            MemberID = ID;
+            FirstName = firstName;
+            LastName = lastName;
+            MemberPoints = memberPoints;
+            MemberFees = memberFees;
             PaidBill = paidBill;
         }
         #endregion

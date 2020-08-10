@@ -1,32 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Space_JALS_Gyms
 {
-//    Override Checkin(Club club)
-//Check if member is allowed to check in to specific club.Spoiler they will.
-//Void PointCheck()
-//Check how many points the member has.Add points on check in.
-//Override PrintInfo()
-//Print member info
-//fName
-//lName
 
     class MultiMember : Member
     {
-        #region Properties
-        public int ClubID { get; set; }
-        public int MemberPoints { get; set; }
-        #endregion
 
         #region Constructors
         public MultiMember() { }
-        public MultiMember(int memberID, string fName, string lName, int memberFees, bool paidBill, int clubID, int memberPoints) : base (memberID, fName, lName, memberFees, paidBill)
+        public MultiMember(int memberID, string fName, string lName, int memberFees, bool paidBill, int memberPoints) : base (memberID, fName, lName, memberFees, paidBill, memberPoints)
         {
-            ClubID = clubID;
-            MemberPoints = memberPoints;
         }
         #endregion
 
@@ -39,6 +26,8 @@ namespace Space_JALS_Gyms
             Console.ResetColor();
             Console.WriteLine();
             Console.WriteLine($"Welcome to Space JALS: Sector - {club.Name}!");
+            IncreaseMemberPoints(memberID);
+            Console.WriteLine($"Your curret points are: {MemberPoints}");
 
         }
         public override void PrintInfo()
@@ -58,14 +47,43 @@ namespace Space_JALS_Gyms
                 Console.ResetColor();
             }
             Console.WriteLine();
-            CheckPoints();
         }
 
 
-        public void CheckPoints()
+        public void IncreaseMemberPoints(int memberID)
         {
-            MemberPoints++;
-            Console.WriteLine($"Current JALS Gorgals: {MemberPoints}");
+            int points = 0;
+
+            points = CheckPoints(memberID);
+            points++;
+
+            MemberPoints = points;
+
+            foreach (Member member in ClubController.MemberInfo)
+            {
+                if (member.MemberID == memberID)
+                {
+                    member.MemberPoints = points ;
+                    break;
+                }
+            }
+
+        }
+        public int CheckPoints(int memberID)
+        {
+            int points = 0;
+
+            foreach (Member member in ClubController.MemberInfo)
+            {
+                if (member.MemberID == memberID)
+                {
+                    points = member.MemberPoints;
+                    break;
+                }
+            }
+           
+
+            return points;
         }
         #endregion
     }
