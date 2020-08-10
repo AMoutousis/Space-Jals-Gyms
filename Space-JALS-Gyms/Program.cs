@@ -10,6 +10,7 @@ namespace Space_JALS_Gyms
         {
             ClubController cc = new ClubController();
 
+            cc.ReadFromFile();
             cc.WriteClubInfoToList();
             CurrentClub = cc.InitializeClubLocation(out clubLocationIndex);
             cc.WelcomeToGym();

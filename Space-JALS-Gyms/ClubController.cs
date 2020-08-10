@@ -6,12 +6,12 @@ using System.Text;
 
 
 namespace Space_JALS_Gyms
-{
-    
+{    
     class ClubController
     {
         //all methods are set inititally set to void to avoid errors while writing code. That will change as logic is added.
         public static List<Club> ClubLocations;
+        public static List<Member> MemberInfo = new List<Member>();
 
         public void WelcomeToGym()
         {
@@ -50,7 +50,10 @@ namespace Space_JALS_Gyms
             }
             else if (option == 4)
             {
-                mMember.CheckPoints();
+                string tempMemberID = Common.GetUserInput("Please enter your Member ID");
+                int memberID = Common.CheckNumber(tempMemberID, false, 0);
+
+                mMember.CheckPoints(memberID);
             }
             else if (option == 5)
             {
@@ -62,6 +65,8 @@ namespace Space_JALS_Gyms
                 //Common.Quit();
                 //need to create a method in Common that quits the program
             }
+
+
 
         }
         public void AddMember()
@@ -105,7 +110,7 @@ namespace Space_JALS_Gyms
             }
 
 
-            WriteToFile(504, strFName, strLName);
+            WriteToFile(52, strFName, strLName, 10, true, 0);
         }
         public void RemoveMember()
         { 
@@ -148,14 +153,14 @@ namespace Space_JALS_Gyms
                 }
             }
         }
-        public void WriteToFile(int ID, string fName, string lName)
+        public void WriteToFile(int ID, string fName, string lName, int fees, bool paidBill, int memberPoints)
         {
-            List<string> MemberInfo = new List<string>();
+            MemberInfo = new List<Member>();
 
             string fileName = "../../../Memberinfo.txt";
             StreamWriter writer = new StreamWriter(fileName, true); //need to pass (x,true) in order to write to the end of file and not overwrite text file data
 
-            writer.WriteLine($"{ID}|{fName}|{lName}");
+            writer.WriteLine($"{ID}|{fName}|{lName}|{fees}|{paidBill}|{memberPoints}");
 
             writer.Close();
 
@@ -173,11 +178,21 @@ namespace Space_JALS_Gyms
             //currently set to read the entire file, once logic for info has been put in place, we will set up the reader to read specific lines.
             string line = reader.ReadLine();
 
-            string[] memberInfo;
+            //string[] memberInfo;
 
             while (line != null)
             {
-                memberInfo = line.Split('|');
+                string[] memberInfo = line.Split('|');
+                if (int.Parse(memberInfo[5]) == 0)
+                {
+                    SingleMember newMember = new SingleMember(int.Parse(memberInfo[0]), memberInfo[1], memberInfo[2], int.Parse(memberInfo[3]), bool.Parse(memberInfo[4]));
+                    MemberInfo.Add(newMember);
+                }
+                else
+                {
+                    MultiMember newMember = new MultiMember(int.Parse(memberInfo[0]), memberInfo[1], memberInfo[2], int.Parse(memberInfo[3]), bool.Parse(memberInfo[4]), int.Parse(memberInfo[5]));
+                    MemberInfo.Add(newMember);
+                }
                 line = reader.ReadLine();
             }
 

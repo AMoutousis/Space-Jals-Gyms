@@ -14,6 +14,9 @@ namespace Space_JALS_Gyms
         public SingleMember(int ID, string firstName, string lastName) : base(ID, firstName, lastName)
         {
         }
+        public SingleMember(int ID, string firstName, string lastName, int fees, bool paidBill) : base(ID, firstName, lastName, fees, paidBill)
+        {
+        }
         //Methods
         public override void PrintInfo()
         {
