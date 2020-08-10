@@ -472,13 +472,17 @@ namespace Space_JALS_Gyms
             StreamReader reader = new StreamReader(fileName, true);
 
             string line = reader.ReadLine();
+            int i = 0;
 
-            while (line != null)
+            while (line != null && i <= 5 )
             {
+
                 string[] clubInfo = line.Split('|');
                 Club newClub = new Club(int.Parse(clubInfo[0]), clubInfo[1], clubInfo[2]);
                 cl.Add(newClub);
                 line = reader.ReadLine();
+                i++;
+
             }
 
             reader.Close();
