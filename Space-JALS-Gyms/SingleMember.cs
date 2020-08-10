@@ -24,30 +24,34 @@ namespace Space_JALS_Gyms
         public override void CheckIn(Club club, int MemberID)
         {
             //club.ID
-            if (MemberID >= 1 && MemberID < 100)
+            if (club.ClubID == 100 && MemberID >= 1 && MemberID < 100)
             {
                 Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
             }
-            else if (MemberID >= 100 && MemberID < 200)
+            else if (club.ClubID == 200 && MemberID >= 100 && MemberID < 200)
             {
-                Console.WriteLine(club.Name);
+                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
             }
-            //else if (MemberID >= 200 && MemberID < 300)
-            //{
-            //    Console.WriteLine(club.Krypton);
-            //}
-            //else if (MemberID >= 300 && MemberID < 400)
-            //{
-            //    Console.WriteLine(club.Mars);
-            //}
-            //else if (MemberID >= 400 && MemberID < 500)
-            //{
-            //    Console.WriteLine(club.Tatooine);
-            //}
-            //else 
-            //{
-            //    Console.WriteLine(club.Gallifrey);
-            //}
+            else if (club.ClubID == 300 && MemberID >= 200 && MemberID < 300)
+            {
+                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+            }
+            else if (club.ClubID == 400 && MemberID >= 300 && MemberID < 400)
+            {
+                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+            }
+            else if (club.ClubID == 500 && MemberID >= 400 && MemberID < 500)
+            {
+                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+            }
+            else if (club.ClubID == 600 && MemberID >= 500 && MemberID < 600)
+            {
+                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+            }
+            else
+            {
+                Console.WriteLine("Go home");
+            }
         }
     }
 }

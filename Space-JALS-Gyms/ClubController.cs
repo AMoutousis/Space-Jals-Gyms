@@ -37,7 +37,7 @@ namespace Space_JALS_Gyms
                 string tempMemberID = Common.GetUserInput("Please enter your Member ID");
                 int memberID = Common.CheckNumber(tempMemberID, false, 0);
 
-                CheckMembership(sMember, mMember, club, memberID);
+                CheckMembership(sMember, mMember, memberID);
 
             }
             else if (option == 2)
@@ -63,8 +63,6 @@ namespace Space_JALS_Gyms
                 //need to create a method in Common that quits the program
             }
 
-
-
         }
         public void AddMember()
         {
@@ -78,8 +76,7 @@ namespace Space_JALS_Gyms
                 count++;
             }
             string sectorSelection = Common.GetUserInput("Please select the sector you would like to join!");
-
-            int ID;
+            int ID = Common.CheckNumber(sectorSelection, false, 0);
 
             if (int.Parse(sectorSelection) == 1)
             {
@@ -113,17 +110,24 @@ namespace Space_JALS_Gyms
         public void RemoveMember()
         { 
         }
-        public void CheckMembership(SingleMember sMember, MultiMember mMember, Club club, int memberID)
+        public void CheckMembership(SingleMember sMember, MultiMember mMember, int memberID)
         { 
             string memberStatus = Common.CheckMemberStatus(memberID);
 
             if (memberStatus == "Single")
             {
-                sMember.CheckIn(club, memberID);
+                if (ClubLocations[Program.clubLocationIndex].ClubID == Program.CurrentClub)
+                {
+                    sMember.CheckIn(ClubLocations[Program.clubLocationIndex], memberID);
+                }
+                else
+                {
+                    Console.WriteLine("get out");
+                }
             }
             else if (memberStatus == "Multi")
             {
-                mMember.CheckIn(club, memberID);
+                mMember.CheckIn(ClubLocations[Program.clubLocationIndex], memberID);
             }
         }
         public void CreateBill(bool PaidBill, Member member)
@@ -202,6 +206,37 @@ namespace Space_JALS_Gyms
 
             ClubLocations = cl;
 
+        }
+        public int InitializeClubLocation(out int clubIndex)
+        {
+            List<int> clubID = new List<int>() { };
+            int count = 1;
+            foreach (Club clubSector in ClubLocations)
+            {
+                Console.WriteLine($"{count}. {clubSector.Name}");
+                clubID.Add(clubSector.ClubID);
+                count++;
+            }
+
+            string sectorSelection = Common.GetUserInput("Please select the club you're currently working at.");
+
+            int ID = Common.CheckNumber(sectorSelection, true, 6);
+
+            int currentClubID = 0;
+            clubIndex = 0;
+
+            for (int i = 0; i < clubID.Count; i++)
+            {
+
+                if (ID-1 == i)
+                {
+                    currentClubID = clubID[i];
+                    clubIndex = i;
+                    break;
+                }
+            }
+
+            return currentClubID;
         }
 
     }
