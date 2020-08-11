@@ -25,34 +25,39 @@ namespace Space_JALS_Gyms
         }
         public override void CheckIn(Club club, int MemberID)
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
             if (club.ClubID == 100 && MemberID >= 1 && MemberID < 100)
             {
-                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+                Console.WriteLine($"Welcome to your club. {club.Name} sector.");
             }
             else if (club.ClubID == 200 && MemberID >= 100 && MemberID < 200)
             {
-                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+                Console.WriteLine($"Welcome to your club. {club.Name} sector.");
             }
             else if (club.ClubID == 300 && MemberID >= 200 && MemberID < 300)
             {
-                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+                Console.WriteLine($"Welcome to your club. {club.Name} sector.");
             }
             else if (club.ClubID == 400 && MemberID >= 300 && MemberID < 400)
             {
-                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+                Console.WriteLine($"Welcome to your club. {club.Name} sector.");
             }
             else if (club.ClubID == 500 && MemberID >= 400 && MemberID < 500)
             {
-                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+                Console.WriteLine($"Welcome to your club. {club.Name} sector.");
             }
             else if (club.ClubID == 600 && MemberID >= 500 && MemberID < 600)
             {
-                Console.WriteLine($"Welcome to your club. Sector - {club.Name}");
+                Console.WriteLine($"Welcome to your club. {club.Name} sector.");
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("This doesn't appear to be your club. Please try again.");
             }
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
         }
     }
 }

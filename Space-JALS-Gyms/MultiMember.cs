@@ -22,11 +22,12 @@ namespace Space_JALS_Gyms
         {
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Access Granted!");
-            Console.ResetColor();
             Console.WriteLine();
-            Console.WriteLine($"Welcome to Space JALS: Sector - {club.Name}!");
+            Console.WriteLine("Access Granted!");
+            Console.WriteLine($"Welcome to {club.Name} sector!");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             IncreaseMemberPoints(memberID);
+            Console.WriteLine();
             Console.WriteLine($"Your curret points are: {MemberPoints}");
 
         }

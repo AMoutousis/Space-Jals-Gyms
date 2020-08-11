@@ -3,7 +3,7 @@
 301|Lauren|Fryman|10|True|0
 401|Sumana|Manoj|10|True|0
 5001|Anna|Baseley|25|True|21
-5002|Tommy|Waalkes|25|False|10
+5002|Tommy|Waalkes|25|False|11
 302|Jimmy|Eat World|10|True|0
 5003|Pete|Pepper|25|True|0
 99|Jennifer|Too high|10|True|0
@@ -13,3 +13,4 @@
 2|John|Peter|10|True|0
 3|Stuart|Little|10|True|0
 4|Bethany|Lazlo|10|True|0
+5004|Hank|Beamer|25|True|1
