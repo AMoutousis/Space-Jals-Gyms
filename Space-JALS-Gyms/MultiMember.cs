@@ -28,7 +28,7 @@ namespace Space_JALS_Gyms
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             IncreaseMemberPoints(memberID);
             Console.WriteLine();
-            Console.WriteLine($"Your curret points are: {MemberPoints}");
+            Console.WriteLine($"Your current points are: {MemberPoints}");
 
         }
         public override void PrintInfo()
@@ -47,6 +47,8 @@ namespace Space_JALS_Gyms
                 Console.WriteLine("No current balance.");
                 Console.ResetColor();
             }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Your Gorgal balance is: {MemberPoints}");
             Console.WriteLine();
         }
 

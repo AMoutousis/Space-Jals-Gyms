@@ -22,6 +22,17 @@ namespace Space_JALS_Gyms
             Console.WriteLine($"ID: {MemberID}");
             Console.WriteLine($"First Name: {FirstName}");
             Console.WriteLine($"Last Name: {LastName}");
+
+            if (PaidBill == true)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"You do not have an outstanding balance.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"You have a balance of {MemberFees} Star Specks");
+            }
         }
         public override void CheckIn(Club club, int MemberID)
         {

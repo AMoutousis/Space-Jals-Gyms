@@ -22,7 +22,7 @@ namespace Space_JALS_Gyms
                 MultiMember mMember = new MultiMember();
                 Club club = new Club();
                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                Console.WriteLine($"Welcome to {ClubLocations[Program.clubLocationIndex].Name}!");
+                Console.WriteLine($"Welcome to {ClubLocations[Program.clubLocationIndex].Name} {ClubLocations[Program.clubLocationIndex].ClubID}!");
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -52,7 +52,17 @@ namespace Space_JALS_Gyms
 
                     if (validID)
                     {
-                        CheckMembership(sMember, mMember, memberID);
+                        bool bFound = CheckIfMemberExists(memberID);
+                        if (bFound)
+                        {
+                            CheckMembership(sMember, mMember, memberID);
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine("Invalid Member ID! Try again!");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        }
                     }
                     else
                     {
@@ -108,40 +118,44 @@ namespace Space_JALS_Gyms
                     int index = 0;
 
                     if (validID)
-                    { 
-
-                        for (int i = 0; i < MemberInfo.Count; i++)
+                    {
+                        bool bFound = CheckIfMemberExists(memberID);
+                        
+                        if (bFound)
                         {
-                            if (memberID == MemberInfo[i].MemberID)
+                            for (int i = 0; i < MemberInfo.Count; i++)
                             {
-                                index = i;
-                                break;
+                                if (memberID == MemberInfo[i].MemberID)
+                                {
+                                    index = i;
+                                    break;
+                                }
                             }
-                        }
 
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine($"First Name: {MemberInfo[index].FirstName}");
-                        Console.WriteLine($"Last Name: {MemberInfo[index].LastName}");
-                        Console.WriteLine($"Member ID: {MemberInfo[index].MemberID}");
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;                            
 
-                        if (MemberInfo[index].PaidBill == true)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"You do not have an outstanding balance.");
+                            if (memberID < 5000)
+                            {
+                                SingleMember singleMember = new SingleMember(MemberInfo[index].MemberID, MemberInfo[index].FirstName, MemberInfo[index].LastName, MemberInfo[index].MemberFees, MemberInfo[index].PaidBill);
+
+                                singleMember.PrintInfo();
+                            }
+                            
+                            if (memberID >= 5000)
+                            {
+                                MultiMember multiMember = new MultiMember(MemberInfo[index].MemberID, MemberInfo[index].FirstName, MemberInfo[index].LastName, MemberInfo[index].MemberFees, MemberInfo[index].PaidBill, MemberInfo[index].MemberPoints);                                
+                                multiMember.PrintInfo();
+                            }
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.WriteLine($"You have a balance of {MemberInfo[index].MemberFees} Star Specks");
+                            Console.WriteLine("Invalid Member ID! Try again!");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                         }
-                        if (memberID >= 5000)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Your Gorgal balance is: {MemberInfo[index].MemberPoints}");
-                        }
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     }
 
 
@@ -158,6 +172,18 @@ namespace Space_JALS_Gyms
                 Console.ReadKey();
                 Console.Clear();
             }
+        }
+
+        public bool CheckIfMemberExists(int memIDToCheck)
+        {
+            foreach (Member m in MemberInfo)
+            {
+                if (m.MemberID == memIDToCheck)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         public void AddMember()
         {
@@ -505,7 +531,7 @@ namespace Space_JALS_Gyms
             Console.WriteLine("SPACE JALS GYMS BILL");
             Console.WriteLine("-*--*--*--*--*--*--*--*--*-");
             Console.WriteLine($"Hello, {memBill.FirstName} {memBill.LastName}!");
-            Console.WriteLine($"You owe {fee}.");
+            Console.WriteLine($"You owe {fee} star specks.");
 
             if (memBill.MemberID > 5000)
             {
