@@ -11,7 +11,7 @@ namespace Space_JALS_Gyms
 
         public static string GetUserInput(string message)
         {
-            Console.WriteLine(message);
+            Console.Write(message);
             return Console.ReadLine();
         }
         #endregion
@@ -21,6 +21,7 @@ namespace Space_JALS_Gyms
             string input1 = Console.ReadLine().ToLower();
             while (input1 != "y" && input1 != "n")
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write("Invalid input. Please enter either \"y\" or \"n\": ");
                 input1 = Console.ReadLine();
             }
@@ -44,11 +45,10 @@ namespace Space_JALS_Gyms
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
                             Console.WriteLine("You have angered the Chickens of Space! I said enter a number from 1-" + num + ".");
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.Write("Please try again: ");
-                            Console.ResetColor();
                             input = Console.ReadLine();
                         }
                     }
@@ -59,11 +59,10 @@ namespace Space_JALS_Gyms
                 }
                 catch
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("You have angered the Chickens of Space! I said enter a number.");
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.Write("Please try again: ");
-                    Console.ResetColor();
                     input = Console.ReadLine();
                 }
             }

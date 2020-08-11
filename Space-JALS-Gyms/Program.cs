@@ -8,7 +8,7 @@ namespace Space_JALS_Gyms
         public static int CurrentClub;
         public static int clubLocationIndex;
         static void Main(string[] args)
-        {
+        {            
             ClubController cc = new ClubController();
 
             cc.ReadFromFile();

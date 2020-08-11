@@ -21,10 +21,11 @@ namespace Space_JALS_Gyms
                 SingleMember sMember = new SingleMember();
                 MultiMember mMember = new MultiMember();
                 Club club = new Club();
-
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.WriteLine($"Welcome to {ClubLocations[Program.clubLocationIndex].Name}!");
                 Console.WriteLine("What would you like to do?");
-
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("1. Check-in");
                 Console.WriteLine("2. Add Member");
                 Console.WriteLine("3. Remove Member");
@@ -32,9 +33,10 @@ namespace Space_JALS_Gyms
                 Console.WriteLine("5. Create Bill");
                 Console.WriteLine("6. Show Member Info");
                 Console.WriteLine("7. Quit");
+                Console.WriteLine();
 
-                
-                string selection = Common.GetUserInput("Please enter a number 1-7");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                string selection = Common.GetUserInput("Please enter a number 1 - 7: ");
                 int option = Common.CheckNumber(selection, true, 7);
 
                 bool validID = true;
@@ -42,7 +44,8 @@ namespace Space_JALS_Gyms
 
                 if (option == 1)
                 {
-                    string tempMemberID = Common.GetUserInput("Please enter your Member ID");
+                    Console.Clear();
+                    string tempMemberID = Common.GetUserInput("Please enter your Member ID to check-in: ");
                     int memberID = Common.CheckNumber(tempMemberID, false, 0);
 
                     Common.CheckMemberStatus(memberID, out validID);
@@ -53,7 +56,9 @@ namespace Space_JALS_Gyms
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("This doesn't appear to be your club. Back to your spaceship!");
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     }
 
                 }
@@ -67,14 +72,27 @@ namespace Space_JALS_Gyms
                 }
                 else if (option == 4)
                 {
-                    string tempMemberID = Common.GetUserInput("Please enter your Member ID");
+
+                    string tempMemberID = Common.GetUserInput("Please enter your Member ID: ");
                     int memberID = Common.CheckNumber(tempMemberID, false, 0);
                     Common.CheckMemberStatus(memberID, out validID);
-                    Console.WriteLine($"Club controller: {mMember.CheckPoints(memberID)}");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine();
+                    if (memberID >= 5000)
+                    {
+                        Console.WriteLine($"Current Point Balance: {mMember.CheckPoints(memberID)} Gorgals");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, you are not a multi-club member.");
+                    }
+                    
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else if (option == 5)
                 {
-                    string tempMemberID = Common.GetUserInput("Please enter your Member ID");
+                    Console.Clear();
+                    string tempMemberID = Common.GetUserInput("Please enter your Member ID: ");
                     int memberID = Common.CheckNumber(tempMemberID, false, 0);
                     Common.CheckMemberStatus(memberID, out validID);
 
@@ -82,7 +100,7 @@ namespace Space_JALS_Gyms
                 }
                 else if (option == 6)
                 {
-                    string tempMemberID = Common.GetUserInput("Please enter your Member ID");
+                    string tempMemberID = Common.GetUserInput("Please enter your Member ID: ");
                     int memberID = Common.CheckNumber(tempMemberID, false, 0);
 
                     Common.CheckMemberStatus(memberID, out validID);
@@ -101,22 +119,29 @@ namespace Space_JALS_Gyms
                             }
                         }
 
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine($"First Name: {MemberInfo[index].FirstName}");
                         Console.WriteLine($"Last Name: {MemberInfo[index].LastName}");
                         Console.WriteLine($"Member ID: {MemberInfo[index].MemberID}");
 
                         if (MemberInfo[index].PaidBill == true)
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"You do not have an outstanding balance.");
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
                             Console.WriteLine($"You have a balance of {MemberInfo[index].MemberFees} Star Specks");
                         }
                         if (memberID >= 5000)
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"Your Gorgal balance is: {MemberInfo[index].MemberPoints}");
                         }
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     }
 
 
@@ -124,27 +149,36 @@ namespace Space_JALS_Gyms
                 else if (option == 7)
                 {
                     Console.Clear();
-                    Console.WriteLine("Thanks for coming to the gym!");
+                    Console.WriteLine("Thanks for visiting Space JALS!");
                     Console.WriteLine("Enjoy your day!");
+                    Console.WriteLine();
                     lContinue = false;
                 }
-                Console.WriteLine("Press any space key to continue!");
+                Console.WriteLine("Press any \'space\' key to continue!");
                 Console.ReadKey();
                 Console.Clear();
             }
         }
         public void AddMember()
         {
-            string strFName = Common.GetUserInput("Please enter First Name");
-            string strLName = Common.GetUserInput("Please enter Last Name");
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("To Add a new Member, please fill in the following: ");
+            Console.WriteLine();
+            string strFName = Common.GetUserInput("First Name: ");
+            string strLName = Common.GetUserInput("Last Name: ");
+            Console.WriteLine();
 
             int count = 1;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             foreach (Club clubSector in ClubLocations)
             {
                 Console.WriteLine($"{count}. {clubSector.Name}");
                 count++;
             }
-            string sectorSelection = Common.GetUserInput("Please select the sector you would like to join!\nPress 7 to blast off as a multi-club member!");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            string sectorSelection = Common.GetUserInput("Please select the sector you would like to join,\nor press 7 to blast off as a multi-club member! (Enter 1 - 7): ");
             int ID = Common.CheckNumber(sectorSelection, true, 7);
 
             if (int.Parse(sectorSelection) == 1)
@@ -154,16 +188,21 @@ namespace Space_JALS_Gyms
                 int newID = NewMemberID(minID, maxID, minID);
 
                 SingleMember newMember = new SingleMember(newID, strFName, strLName, 10, true);
-                Console.WriteLine($"Are you sure you want to add {strFName} {strLName}?");
+                Console.WriteLine();
+                Console.Write($"Are you sure you want to add {strFName} {strLName}? Enter y/n: ");
                 string confirmation = Common.YesNoChecker();
                 if (confirmation == "y")
                 {
                     MemberInfo.Add(newMember);
-                    Console.WriteLine($"{strFName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{strFName} {strLName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else
                 {
-                    Console.WriteLine("Member has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{strFName} {strLName} has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
 
             }
@@ -174,15 +213,21 @@ namespace Space_JALS_Gyms
                 int newID = NewMemberID(minID, maxID, minID);
 
                 SingleMember newMember = new SingleMember(newID, strFName, strLName, 10, true);
-                Console.WriteLine($"Are you sure you want to add {strFName} {strLName}?");
+                Console.WriteLine();
+                Console.Write($"Are you sure you want to add {strFName} {strLName}? Enter y/n: ");
                 string confirmation = Common.YesNoChecker();
                 if (confirmation == "y")
                 {
                     MemberInfo.Add(newMember);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{strFName} {strLName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else
                 {
-                    Console.WriteLine("Member has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{strFName} {strLName} has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
             }
             else if (int.Parse(sectorSelection) == 3)
@@ -192,15 +237,21 @@ namespace Space_JALS_Gyms
                 int newID = NewMemberID(minID, maxID, minID);
 
                 SingleMember newMember = new SingleMember(newID, strFName, strLName, 10, true);
-                Console.WriteLine($"Are you sure you want to add {strFName} {strLName}?");
+                Console.WriteLine();
+                Console.Write($"Are you sure you want to add {strFName} {strLName}? Enter y/n: ");
                 string confirmation = Common.YesNoChecker();
                 if (confirmation == "y")
                 {
                     MemberInfo.Add(newMember);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{strFName} {strLName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else
                 {
-                    Console.WriteLine("Member has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{strFName} {strLName} has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
             }
             else if (int.Parse(sectorSelection) == 4)
@@ -210,15 +261,21 @@ namespace Space_JALS_Gyms
                 int newID = NewMemberID(minID, maxID, minID);
 
                 SingleMember newMember = new SingleMember(newID, strFName, strLName, 10, true);
-                Console.WriteLine($"Are you sure you want to add {strFName} {strLName}?");
+                Console.WriteLine();
+                Console.Write($"Are you sure you want to add {strFName} {strLName}? Enter y/n: ");
                 string confirmation = Common.YesNoChecker();
                 if (confirmation == "y")
                 {
                     MemberInfo.Add(newMember);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{strFName} {strLName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else
                 {
-                    Console.WriteLine("Member has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{strFName} {strLName} has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
             }
             else if (int.Parse(sectorSelection) == 5)
@@ -228,15 +285,21 @@ namespace Space_JALS_Gyms
                 int newID = NewMemberID(minID, maxID, minID);
 
                 SingleMember newMember = new SingleMember(newID, strFName, strLName, 10, true);
-                Console.WriteLine($"Are you sure you want to add {strFName} {strLName}?");
+                Console.WriteLine();
+                Console.Write($"Are you sure you want to add {strFName} {strLName}? Enter y/n: ");
                 string confirmation = Common.YesNoChecker();
                 if (confirmation == "y")
                 {
                     MemberInfo.Add(newMember);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{strFName} {strLName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else
                 {
-                    Console.WriteLine("Member has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{strFName} {strLName} has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
             }
             else if (int.Parse(sectorSelection) == 6)
@@ -246,15 +309,21 @@ namespace Space_JALS_Gyms
                 int newID = NewMemberID(minID, maxID, minID);
 
                 SingleMember newMember = new SingleMember(newID, strFName, strLName, 10, true);
-                Console.WriteLine($"Are you sure you want to add {strFName} {strLName}?");
+                Console.WriteLine();
+                Console.Write($"Are you sure you want to add {strFName} {strLName}? Enter y/n: ");
                 string confirmation = Common.YesNoChecker();
                 if (confirmation == "y")
                 {
                     MemberInfo.Add(newMember);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{strFName} {strLName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else
                 {
-                    Console.WriteLine("Member has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{strFName} {strLName} has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
             }
             else if (int.Parse(sectorSelection) == 7)
@@ -264,15 +333,21 @@ namespace Space_JALS_Gyms
                 int newID = NewMemberID(minID, maxID, minID);
 
                 MultiMember newMember = new MultiMember(newID, strFName, strLName, 25, true, 0);
-                Console.WriteLine($"Are you sure you want to add {strFName} {strLName}?");
+                Console.WriteLine();
+                Console.Write($"Are you sure you want to add {strFName} {strLName}? Enter y/n: ");
                 string confirmation = Common.YesNoChecker();
                 if (confirmation == "y")
                 {
                     MemberInfo.Add(newMember);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{strFName} {strLName} has been added to the list!");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
                 else
                 {
-                    Console.WriteLine("Member has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{strFName} {strLName} has not been added.");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
             }
 
@@ -302,8 +377,9 @@ namespace Space_JALS_Gyms
         }
         public void RemoveMember()
         {
+            Console.Clear();
             bool foundMember = false;
-            string input = Common.GetUserInput("Which unlucky Chicken is fried today?");
+            string input = Common.GetUserInput("Which unlucky Chicken is getting fried today? Enter a member ID: ");
             int tempInput = Common.CheckNumber(input, false, 0);
             
             foreach (Member removedMember in MemberInfo)
@@ -311,23 +387,29 @@ namespace Space_JALS_Gyms
                 if (removedMember.MemberID == tempInput)
                 {
                     foundMember = true;
-                    Console.WriteLine($"Are you sure you want to remove {removedMember.FirstName}?");
+                    Console.Write($"Are you sure you want to remove {removedMember.FirstName}? Enter y/n: ");
                     string confirmation = Common.YesNoChecker();
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     if (confirmation == "y")
                     {
                         MemberInfo.Remove(removedMember);
-                        Console.WriteLine(removedMember.FirstName + " has been removed from the Member List");
+                        Console.WriteLine(removedMember.FirstName + " has been fried and removed from the member List.");
                     }
                     else
                     {
-                        Console.WriteLine($"{removedMember.FirstName} has not been removed from the list");
+                        Console.WriteLine($"{removedMember.FirstName} has not been fried or removed from the member list.");
                     }
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     break;
                 }
             }
             if (foundMember == false)
             {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("This isn't the ID you're looking for.");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
             }
         }
         public void CheckMembership(SingleMember sMember, MultiMember mMember, int memberID)
@@ -343,7 +425,11 @@ namespace Space_JALS_Gyms
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine();
                     Console.WriteLine("You are not permitted to use this Space.");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 }
             }
             else if (memberStatus == "Multi")
@@ -353,14 +439,16 @@ namespace Space_JALS_Gyms
         }
         public void CreateBill(int memberID)
         {
-
             foreach (Member memBill in MemberInfo)
             {
                 if (memberID == memBill.MemberID)
                 {
                     if (memBill.PaidBill == true)
                     {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Your bill has been paid! Thank you!");
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     }
                     else
                     {
@@ -375,13 +463,14 @@ namespace Space_JALS_Gyms
                             }
                             else
                             {
+                                Console.WriteLine();
                                 Console.WriteLine("I'm sorry, members with an outstanding balance are not permitted into the club.");
                             }
                         }
                         else
                         {
                             GenerateBill(memBill, 25);
-                            Console.WriteLine($"Would you like to pay your bill?");
+                            Console.Write($"Would you like to pay your bill? Enter y/n: ");
                             string payBill = Common.YesNoChecker();
                             if (payBill == "y")
                             {
@@ -389,6 +478,7 @@ namespace Space_JALS_Gyms
                             }
                             else
                             {
+                                Console.WriteLine();
                                 Console.WriteLine("I'm sorry, members with an outstanding balance are not permitted into the club.");
                             }
                         }
@@ -398,23 +488,31 @@ namespace Space_JALS_Gyms
         }
         public void PayBill(Member paidMember)
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Thank you for paying your bill on time!");
             Console.WriteLine("Have a great day!");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+
 
             paidMember.PaidBill = true;
 
         }
         public void GenerateBill(Member memBill, int fee)
         {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("SPACE JALS GYMS BILL");
             Console.WriteLine("-*--*--*--*--*--*--*--*--*-");
             Console.WriteLine($"Hello, {memBill.FirstName} {memBill.LastName}!");
-            Console.WriteLine($"You owe {fee}!");
+            Console.WriteLine($"You owe {fee}.");
 
             if (memBill.MemberID > 5000)
             {
                 Console.WriteLine($"You have {memBill.MemberPoints} Gorgals!");
             }
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine();
         }
         public void WriteToFile()
         {
@@ -442,10 +540,13 @@ namespace Space_JALS_Gyms
             //currently set to read the entire file, once logic for info has been put in place, we will set up the reader to read specific lines.
             string line = reader.ReadLine();
 
-            //string[] memberInfo;
-
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("In which sector is your gym located?");
+            Console.WriteLine();
+            
             while (line != null)
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 string[] memberInfo = line.Split('|');
                 if (int.Parse(memberInfo[5]) == 0)
                 {
@@ -501,7 +602,9 @@ namespace Space_JALS_Gyms
                 count++;
             }
 
-            string sectorSelection = Common.GetUserInput("Please select the club console you are using.");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            string sectorSelection = Common.GetUserInput("Enter 1 - 6 to choose your sector: ");
 
             int ID = Common.CheckNumber(sectorSelection, true, 6);
 
